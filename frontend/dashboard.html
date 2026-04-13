@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoData - Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <div class="dashboard-container">
@@ -170,17 +171,43 @@
 </div>
 
                 <div class="node-grid">
-                    <div class="node-card">
-                        <h3>📊 Interactive Charts</h3>
-                        <p>Main data visualization area.</p>
+                    <div class="node-card" style="grid-column: 1 / -1;"> <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                            Air Quality Trend (Last 7 Days)
+                        </h3>
+                        <div style="height: 300px; width: 100%;">
+                            <canvas id="aqiChart"></canvas>
+                        </div>
                     </div>
-                    <div class="node-card">
-                        <h3>🗺️ Map Visualization</h3>
-                        <p>Geographic heatmaps.</p>
+
+                    <div class="node-card" style="grid-column: 1 / -1; margin-top: 20px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                                <line x1="9" y1="3" x2="9" y2="21"></line>
+                                <line x1="15" y1="3" x2="15" y2="21"></line>
+                            </svg>
+                            Global Air Quality Heatmap
+                        </h3>
+                        <div id="map" style="height: 400px; width: 100%; border-radius: 8px; z-index: 1;"></div>
                     </div>
                 </div>
+
             </div>
         </main>
     </div>
+
+    <!-- leaflet.js library pour la map -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   
+    <!-- chart.js library pour les graphes -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="dashboard.js"></script>
+
 </body>
 </html>
