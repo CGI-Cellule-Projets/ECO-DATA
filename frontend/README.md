@@ -5,7 +5,7 @@
 **Design:** Figma
 **Icons:** Inline SVG (Line-art style)
 
-**TASK 2 interactive dashboard interface:**
+**TASK 2,4,5 interactive dashboard interface:**
 
 Integrated **Chart.js** for air quality trend visualization.
 
