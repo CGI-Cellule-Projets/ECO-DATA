@@ -126,18 +126,56 @@
                     <h1>Compare Locations</h1>
                     <p>Select multiple locations to juxtapose air quality metrics side-by-side.</p>
                 </div>
-                <div class="node-grid">
-                    <div class="node-card">
-                        <h3>🎯 Location Selection</h3>
-                        <p>Dropdown fields to select City A and City B.</p>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <span class="filter-icon">📍</span>
+                        <select id="cityA" class="filter-select">
+                            <option value="London">London</option>
+                            <option value="Paris">Paris</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Tokyo">Tokyo</option>
+                        </select>
                     </div>
-                    <div class="node-card">
-                        <h3>⚖️ Comparison Charts</h3>
-                        <p>Visual overlays comparing the selected variables.</p>
+                    
+                    <div class="filter-group" style="flex: 0 0 auto; min-width: 0; background: none; box-shadow: none; border: none; font-weight: bold; color: var(--text-gray);">
+                        VS
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-icon">📍</span>
+                        <select id="cityB" class="filter-select">
+                            <option value="Paris">Paris</option>
+                            <option value="London">London</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Tokyo">Tokyo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="node-grid">
+                    <div class="node-card" style="grid-column: 1 / -1;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            Pollutant Levels Comparison (AQI)
+                        </h3>
+                        <div style="height: 350px; width: 100%;">
+                            <canvas id="compareChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="global.js"></script>
+    
+    <script src="compare.js"></script>
+</body>
+
 </body>
 </html>
