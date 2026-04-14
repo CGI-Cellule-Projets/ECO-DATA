@@ -363,3 +363,91 @@ body {
     color: var(--text-gray);
     font-weight: 400;
 }
+
+/* AI Pulse Animation */
+@keyframes ai-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.pulse-icon {
+    animation: ai-pulse 2s infinite ease-in-out;
+    color: #4a90e2; /* Matches your AI card theme */
+}
+
+/* === LEARN PAGE MODALS & BUTTONS === */
+.read-more-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: var(--brand-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    width: fit-content;
+}
+
+.read-more-btn:hover {
+    background-color: #27ae60;
+}
+
+/* === FULL PAGE ARTICLE VIEW === */
+.article-view {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--brand-green);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: #27ae60;
+}
+
+.article-body h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.article-body p {
+    line-height: 1.8;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.article-body ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+.article-body li {
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
