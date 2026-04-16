@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard Admin</title>
+</head>
+<body>
+
+<h1>Dashboard Admin</h1>
+
+<p>Total Requests: <span id="requests">loading...</span></p>
+<p>Errors: <span id="errors">loading...</span></p>
+<p>Status: <span id="status">loading...</span></p>
+
+<h3>Logs</h3>
+<ul id="logs"></ul>
+
+<script>
+function loadData() {
+  fetch("http://127.0.0.1:8000/admin/stats")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("requests").innerText = data.total_requests;
+    document.getElementById("errors").innerText = data.errors;
+    document.getElementById("status").innerText = data.status;
+  });
+
+  fetch("http://127.0.0.1:8000/admin/logs")
+  .then(res => res.json())
+  .then(data => {
+    let list = document.getElementById("logs");
+    list.innerHTML = "";
+
+    data.forEach(log => {
+      let li = document.createElement("li");
+      li.innerText = log.method + " " + log.endpoint + " - " + log.time;
+      list.appendChild(li);
+    });
+  });
+}
+
+loadData();
+setInterval(loadData, 3000);
+</script>
+
+</body>
+</html>
