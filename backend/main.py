@@ -1,43 +1,45 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
 
-app = FastAPI()
+# On importe les routers définis dans app/api
+from app.api import health, sensors
 
-# CORS (OBLIGATOIRE)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+
+# Création de l'application FastAPI
+app = FastAPI(
+    title="ECO-DATA API",
+    description="Backend FastAPI pour la plateforme ECO-DATA.",
+    version="0.1.0",
 )
 
-stats = {
-    "total_requests": 0,
-    "errors": 0,
-    "status": "OK"
-}
 
-logs = []
+# CORS : pour autoriser le frontend ECO-DATA
 
-@app.middleware("http")
-async def count_requests(request: Request, call_next):
-    stats["total_requests"] += 1
+# À adapter selon comment on lance le frontend (Live Server, Vite, etc)
+origins = [
+    "http://localhost:5500",      # cas courant: Live Server VS Code
+    "http://127.0.0.1:5500",
+    "http://localhost:3000",      # si on utilise un autre dev server
+]
 
-    logs.append({
-        "endpoint": request.url.path,
-        "method": request.method,
-        "time": str(datetime.now())
-    })
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,        # domaines autorisés
+    allow_credentials=True,
+    allow_methods=["*"],          # toutes les méthodes (GET, POST, etc)
+    allow_headers=["*"],          # tous les headers
+)
 
-    response = await call_next(request)
-    return response
+# Inclusion des routers
 
-@app.get("/admin/stats")
-def get_stats():
-    return stats
+app.include_router(health.router)
+app.include_router(sensors.router)
 
-@app.get("/admin/logs")
-def get_logs():
-    return logs
+
+# Route racine de test
+@app.get("/")
+async def root():
+    """
+    Endpoint de base pour vérifier que l'API tourne.
+    """
+    return {"message": "ECO-DATA FastAPI backend is running"}  #msg test

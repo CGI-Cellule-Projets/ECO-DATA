@@ -1,0 +1,1 @@
+#On l'utilisera en tache de la connexion MySQL.

@@ -1,0 +1,6 @@
+fastapi 
+uvicorn[standard] #serveur ASGI
+pydantic
+python-dotenv #pour charger var d'environnement(.env) après
+python-jose[cryptography] 
+passlib[bcrypt]
